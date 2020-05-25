@@ -3,16 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+import {HttpGet} from './httpUtil';
+import Products from './shop/Products';
+
 function App() {
   function getdate(){
-    axios.get('/base/user/1')
-    .then(function (response) {
-      console.log(response.data);
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.headers);
-      console.log(response.config);
-    });
+    var data = HttpGet('/base/user/1');
+    // console.log(data);
   }
   return (
     <div className="App">
@@ -22,6 +19,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={getdate}>测试调用后台</button>
+        <Products name="sdfsf"></Products>
       </header>
     </div>
   );

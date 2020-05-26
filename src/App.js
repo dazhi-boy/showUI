@@ -1,28 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Button, Icon } from 'antd-mobile';
+import styles from './App.css';
 import axios from 'axios';
 
-import {HttpGet} from './httpUtil';
-import Products from './shop/Products';
+const customIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3">
+    
+  </svg>
+)
 
-function App() {
-  function getdate(){
-    var data = HttpGet('/base/user/1');
-    // console.log(data);
-  }
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+function getdate(){
+  axios.get('/shop/product').then(
+    (response) => {
+      // this.setState({
+      //   items: response.data.data.records
+      // });
+      console.log(response);
+    }
+  ) 
+}
+
+class App extends Component {
+  render() {
+    return (
+      <div className={styles.App}>
         <button onClick={getdate}>测试调用后台</button>
-        <Products name="sdfsf"></Products>
-      </header>
-    </div>
-  );
+        <Button type="primary">This is a button</Button>
+      </div>
+    );
+  }
 }
 
 export default App;

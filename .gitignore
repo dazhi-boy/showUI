@@ -1,66 +1,63 @@
-bin/
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
 build/
-build-ui/
-.settings/
-.gradle/
-.classpath
-.project
-.git/
-.svn*
-.settings/
-catalina*
-/logs/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
 
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
-# ide config
+# Android/IntelliJ
+#
+build/
 .idea
+.gradle
+local.properties
+*.iml
 
-# dependencies
-/node_modules
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
 
-# testing
-/coverage
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
 
-# production
-/build
-/dist
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-/src/pages/page-routes.js
-/src/models/all-models.js
-/suixingpay-fe/
-/server/
-/docs/_book
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Bundle artifacts
+*.jsbundle
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# CocoaPods
+/ios/Pods/
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Expo
+.expo/*
+web-build/

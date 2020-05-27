@@ -1,28 +1,61 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'antd-mobile';
 import styles from './App.css';
-import { Flex, WhiteSpace } from 'antd-mobile';
+import { Flex, WhiteSpace, WingBlank, Grid } from 'antd-mobile';
+import Product from './shop/Product';
+import axios from 'axios';
 
 const PlaceHolder = ({ className = '', ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>Block</div>
 );
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {products: []};
+  }
+
+  componentDidMount(){
+    axios.get('/shop/product')
+    .then((result) => {
+      console.log(result.data.data.records);
+      this.setState({
+        products: result.data.data.records
+      });
+    })
+  }
   
   render() {
+    const { products } = this.state;
+    const data = products.map((product) => ({
+      icon: product.cover,
+      text: product.title,
+    }));
     return (
       <div className={styles.App}>
-        <div className={styles['App-header']}>
-          <Flex>
-            <Flex.Item><PlaceHolder/></Flex.Item>
-            <Flex.Item><PlaceHolder/></Flex.Item>
-          </Flex>
-          <h2>Welcome to React</h2>
-        </div>
-        <p className={styles['App-intro']}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button type="primary">This is a button</Button>
+        <WingBlank size="sm">
+          <WhiteSpace/>
+          <Grid data={data}
+            columnNum={2}
+            renderItem={dataItem => (
+              <div>
+                <img src={dataItem.icon} style={{ width: '100%', height: '300px'}} alt="" />
+                <div style={{ color: '#888', fontSize: '14px', marginTop: '12px' }}>
+                  <span>I am title..</span>
+                </div>
+              </div>
+            )}
+            square={false}
+            // className="not-square-grid"
+          />
+          {/* <Flex align="start" wrap="wrap">
+            {products.map((product)=>(
+              // <Flex.Item key={product.id}>
+                <Product product={product}/>
+              // </Flex.Item>
+            ))}
+          </Flex> */}
+        </WingBlank>
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Icon } from 'antd-mobile';
 import styles from './App.css';
 import { Flex, WhiteSpace, WingBlank, Grid } from 'antd-mobile';
-import Product from './shop/Product';
 import axios from 'axios';
 
 const PlaceHolder = ({ className = '', ...restProps }) => (
@@ -30,6 +29,7 @@ class App extends Component {
     const data = products.map((product) => ({
       icon: product.cover,
       text: product.title,
+      description: product.description,
     }));
     return (
       <div className={styles.App}>
@@ -39,9 +39,10 @@ class App extends Component {
             columnNum={2}
             renderItem={dataItem => (
               <div>
-                <img src={dataItem.icon} style={{ width: '100%', height: '300px'}} alt="" />
-                <div style={{ color: '#888', fontSize: '14px', marginTop: '12px' }}>
-                  <span>I am title..</span>
+                <img src={dataItem.icon} style={{ width: '95%'}} alt="" />
+                <div style={{ color: '#888', fontSize: '14px', margin: '12px' }}>
+                  <span>品名：{dataItem.text}</span><br/>
+                  <span>描述：{dataItem.description}</span>
                 </div>
               </div>
             )}
